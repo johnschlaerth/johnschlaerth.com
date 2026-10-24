@@ -4,8 +4,5 @@
   X-Frame-Options: SAMEORIGIN
   Permissions-Policy: camera=(), microphone=(), geolocation=()
 
-/media/*
-  Cache-Control: public, max-age=31536000, immutable
-
 /documents/*
   Cache-Control: public, max-age=86400

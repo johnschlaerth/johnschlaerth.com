@@ -42,7 +42,7 @@ for (const page of site.pages) {
     }
   }
   const videoSources = (page.modules || []).filter(module => module.type === 'video').map(module => module.src);
-  for (const src of videoSources) if (!html.includes(`src="${src}"`)) errors.push(`Missing recovered video: ${page.slug}`);
+  for (const src of videoSources) if (!html.includes(`src="${src}?v=20261023"`)) errors.push(`Missing recovered video: ${page.slug}`);
 }
 
 const originalProjectOrder = site.projects.map(project => project.slug);
@@ -72,6 +72,7 @@ async function resolveLocal(reference, pageFile) {
   try { url = new URL(value, pageURL); } catch { errors.push(`Malformed reference ${value}`); return; }
   if (url.host !== 'local.invalid') return;
   report.localReferences++;
+  if (url.pathname.startsWith('/media/') && url.searchParams.get('v') !== '20261023') errors.push(`Media URL can reuse a cached migration error: ${value}`);
   const relative = decodeURIComponent(url.pathname).replace(/^\//, '');
   let target = path.resolve(dist, relative);
   if (target !== dist && !target.startsWith(dist + path.sep)) { errors.push(`Out-of-root reference ${value}`); return; }

@@ -15,6 +15,8 @@ const maxAssetBytes = 25 * 1024 * 1024;
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
 const cleanText = value => String(value ?? '').replace(/[\u200B-\u200D\uFEFF]/g, '').replace(/\s+/g, ' ').trim();
 const route = slug => !slug || slug === 'index' ? '/' : `/${slug.replace(/^\/+|\/+$/g, '')}/`;
+// Bypass image errors cached by the incomplete first deployment.
+const mediaURL = href => href.replace(/^\/media\/([^?#]+)$/, '/media/$1?v=20261023');
 const resume = profile.resume;
 const absolute = href => new URL(href, profile.siteUrl).href;
 const navigation = [['work', 'Work'], ['about', 'About'], ['resume', 'Résumé'], ['contact', 'Contact']];
@@ -46,7 +48,7 @@ function normalizedLink(href) {
       if (pages.has(slug || 'index')) return route(slug) + url.search + url.hash;
     }
   } catch { /* The migration checker reports malformed links. */ }
-  return href;
+  return mediaURL(href);
 }
 
 function richText(html) {
@@ -65,8 +67,8 @@ function imageTag(image, options = {}) {
   const width = version.width || image.width;
   const height = version.height || image.height;
   const srcset = !thumbnail && Array.isArray(version.srcset) && version.srcset.length && !/\.gif$/i.test(src)
-    ? ` srcset="${version.srcset.map(item => `${escape(item.src)} ${item.width}w`).join(', ')}" sizes="${escape(sizes)}"` : '';
-  return `<img src="${escape(src)}"${srcset} alt="${escape(alt || image.alt)}"${width && height ? ` width="${width}" height="${height}"` : ''} loading="${eager ? 'eager' : 'lazy'}" decoding="async"${eager ? ' fetchpriority="high"' : ''}>`;
+    ? ` srcset="${version.srcset.map(item => `${escape(mediaURL(item.src))} ${item.width}w`).join(', ')}" sizes="${escape(sizes)}"` : '';
+  return `<img src="${escape(mediaURL(src))}"${srcset} alt="${escape(alt || image.alt)}"${width && height ? ` width="${width}" height="${height}"` : ''} loading="${eager ? 'eager' : 'lazy'}" decoding="async"${eager ? ' fetchpriority="high"' : ''}>`;
 }
 
 function imageFigure(image, title, index, caption = '') {
@@ -74,9 +76,9 @@ function imageFigure(image, title, index, caption = '') {
   const alt = cleanText(image.alt) || (caption ? cleanText(caption) : `${title} — project image ${index}`);
   const full = version.full || image.src;
   if (version.video) {
-    return `<figure class="project-figure animated-figure" data-source-media="${escape(image.src)}"><video controls data-animated muted loop playsinline preload="none"${version.poster ? ` poster="${escape(version.poster)}"` : ''} aria-label="${escape(alt)}"><source src="${escape(version.video)}" type="video/mp4"><a href="${escape(version.video)}">Open animation</a></video>${caption ? `<figcaption>${escape(caption)}</figcaption>` : ''}<p class="media-download"><a href="${escape(full)}">Open animation${/\.gif$/i.test(full) ? ' (original GIF)' : ''} ↗</a></p></figure>`;
+    return `<figure class="project-figure animated-figure" data-source-media="${escape(image.src)}"><video controls data-animated muted loop playsinline preload="none"${version.poster ? ` poster="${escape(mediaURL(version.poster))}"` : ''} aria-label="${escape(alt)}"><source src="${escape(mediaURL(version.video))}" type="video/mp4"><a href="${escape(mediaURL(version.video))}">Open animation</a></video>${caption ? `<figcaption>${escape(caption)}</figcaption>` : ''}<p class="media-download"><a href="${escape(mediaURL(full))}">Open animation${/\.gif$/i.test(full) ? ' (original GIF)' : ''} ↗</a></p></figure>`;
   }
-  return `<figure class="project-figure" data-source-media="${escape(image.src)}"><a class="media-link" href="${escape(full)}" data-lightbox data-caption="${escape(alt)}" aria-label="${escape(`Enlarge: ${alt}`)}">${imageTag(image, { alt })}<span class="enlarge-hint" aria-hidden="true">↗</span></a>${caption ? `<figcaption>${escape(caption)}</figcaption>` : ''}</figure>`;
+  return `<figure class="project-figure" data-source-media="${escape(image.src)}"><a class="media-link" href="${escape(mediaURL(full))}" data-lightbox data-caption="${escape(alt)}" aria-label="${escape(`Enlarge: ${alt}`)}">${imageTag(image, { alt })}<span class="enlarge-hint" aria-hidden="true">↗</span></a>${caption ? `<figcaption>${escape(caption)}</figcaption>` : ''}</figure>`;
 }
 
 function modulesHTML(page) {
@@ -91,12 +93,12 @@ function modulesHTML(page) {
     if (module.type === 'video') {
       const src = module.src || module.video?.src;
       if (!src) throw new Error(`Video without local src on ${page.slug}`);
-      return `<section id="${id}" class="module module-video"><video controls preload="none" playsinline${module.poster ? ` poster="${escape(module.poster)}"` : ''} aria-label="${escape(module.title || page.title + ' video')}"><source src="${escape(src)}" type="video/mp4"><a href="${escape(src)}">Download video</a></video><p class="caption">${escape(module.title || page.title + ' — project video')} · <a href="${escape(src)}">Open video ↗</a></p></section>`;
+      return `<section id="${id}" class="module module-video"><video controls preload="none" playsinline${module.poster ? ` poster="${escape(mediaURL(module.poster))}"` : ''} aria-label="${escape(module.title || page.title + ' video')}"><source src="${escape(mediaURL(src))}" type="video/mp4"><a href="${escape(mediaURL(src))}">Download video</a></video><p class="caption">${escape(module.title || page.title + ' — project video')} · <a href="${escape(mediaURL(src))}">Open video ↗</a></p></section>`;
     }
     if (module.type === 'embed') return `<section id="${id}" class="module module-embed">${(module.embeds || []).map(embed => {
-      if (/\.(mp4|webm)(\?|$)/i.test(embed.src)) return `<video controls preload="none" playsinline src="${escape(embed.src)}" aria-label="${escape(embed.title || page.title)}"></video>`;
+      if (/\.(mp4|webm)(\?|$)/i.test(embed.src)) return `<video controls preload="none" playsinline src="${escape(mediaURL(embed.src))}" aria-label="${escape(embed.title || page.title)}"></video>`;
       if (/adobe|myportfolio/i.test(embed.src)) throw new Error(`Adobe-dependent embed still needs migration: ${page.slug}`);
-      return `<iframe src="${escape(embed.src)}" title="${escape(embed.title || page.title + ' video')}" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="caption"><a href="${escape(embed.src)}">Open embedded media ↗</a></p>`;
+      return `<iframe src="${escape(mediaURL(embed.src))}" title="${escape(embed.title || page.title + ' video')}" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="caption"><a href="${escape(mediaURL(embed.src))}">Open embedded media ↗</a></p>`;
     }).join('')}</section>`;
     if (module.type === 'form') return ''; // Replaced by an explicit email composer on /contact/.
     if (module.type === 'divider') return '<hr class="module-divider">';
@@ -115,7 +117,7 @@ function layout({ title, slug, description, body, cover, active, noindex = false
   const socialImage = cover?.src ? (media[cover.src]?.display || cover.src) : projects[0]?.cover?.src;
   const jsonLd = { '@context': 'https://schema.org', '@type': 'Person', name: profile.fullName, url: profile.siteUrl, jobTitle: 'Multidisciplinary engineer', sameAs: [profile.linkedin, profile.github] };
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(titleText)}</title><meta name="description" content="${escape(description || profile.intro)}"><link rel="canonical" href="${escape(url)}"><meta name="theme-color" content="#ffffff">${noindex ? '<meta name="robots" content="noindex">' : ''}<meta property="og:type" content="website"><meta property="og:title" content="${escape(titleText)}"><meta property="og:description" content="${escape(description || profile.intro)}"><meta property="og:url" content="${escape(url)}"><meta property="og:site_name" content="${escape(profile.name)}">${socialImage ? `<meta property="og:image" content="${escape(absolute(socialImage))}">` : ''}<meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"><script src="/site.js" defer></script><script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(titleText)}</title><meta name="description" content="${escape(description || profile.intro)}"><link rel="canonical" href="${escape(url)}"><meta name="theme-color" content="#ffffff">${noindex ? '<meta name="robots" content="noindex">' : ''}<meta property="og:type" content="website"><meta property="og:title" content="${escape(titleText)}"><meta property="og:description" content="${escape(description || profile.intro)}"><meta property="og:url" content="${escape(url)}"><meta property="og:site_name" content="${escape(profile.name)}">${socialImage ? `<meta property="og:image" content="${escape(absolute(mediaURL(socialImage)))}">` : ''}<meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"><script src="/site.js" defer></script><script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script></head>
 <body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="shell"><a class="wordmark" href="/">JOHN SCHLAERTH<span class="wordmark-dot" aria-hidden="true">.</span></a><nav class="site-nav" aria-label="Main navigation">${navigation.map(([key, label]) => `<a href="${route(key)}"${(active || slug) === key || ((slug === 'index' || pages.get(slug)?.kind === 'project') && key === 'work') ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav></div></header>
 <main id="main" class="shell">${body}</main>
 <footer class="site-footer"><div class="shell"><div class="footer-bottom"><span>© ${new Date(source.captured_at).getFullYear() || 2026} ${escape(profile.name)}</span><nav aria-label="Elsewhere"><a href="mailto:${profile.email}">Email ↗</a><a href="${profile.linkedin}">LinkedIn ↗</a><a href="${profile.github}">GitHub ↗</a><a href="/social-media/">Elsewhere ↗</a></nav><a href="#top" class="back-to-top">Back to top ↑</a></div></div></footer>${lightbox()}</body></html>`;
