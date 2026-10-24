@@ -2,7 +2,7 @@
 
 A self-hosted replacement for [John's Adobe Portfolio](https://johnschlaerth.myportfolio.com), built for [johnschlaerth.com](https://johnschlaerth.com). It preserves the original project descriptions and media in a personal portfolio with the clean typography, structured layout, and restrained color of Goosnav Labs.
 
-The site uses a dependency-free Node.js static builder. Project content, presentation, and media live in this repository; Cloudflare Pages serves the generated HTML, CSS, JavaScript, and files. No Adobe subscription or application server is required to serve the migrated site.
+The site uses a dependency-free Node.js static builder. Project content, presentation, and media live in this repository; Cloudflare serves the generated HTML, CSS, JavaScript, and files. No Adobe subscription or application server is required to serve the migrated site.
 
 ## Run locally
 
@@ -35,22 +35,26 @@ The contact action opens an email draft in the visitor's mail application; it do
 
 ## Publish on Cloudflare
 
-Connect **`johnschlaerth/johnschlaerth.com`** to a **Cloudflare Pages** project using:
+The root `wrangler.json` configures a static Cloudflare Worker. Connect **`johnschlaerth/johnschlaerth.com`** with these settings:
 
 | Setting | Value |
 | --- | --- |
+| Worker name | `johnschlaerth-com` |
 | Production branch | `main` |
-| Framework preset | `None` |
 | Build command | `npm run build` |
-| Build output directory | `dist` |
-| Root directory | Repository root; leave the field empty |
-| Node.js version | `22` or newer; set `NODE_VERSION=22` if needed |
+| Deploy command | `npx --yes wrangler@4.152.0 deploy` |
+| Root directory | Repository root |
+| Node.js version | `22` or newer |
 
-See [the deployment guide](docs/DEPLOYMENT.md) for account connection, domain setup, and verification. Test the generated `pages.dev` site before switching the domain. Domain registration can remain with its current registrar.
+The build checks all local media and original content before deployment. Only `dist/` is public.
+An existing Cloudflare Pages project can also use build command `npm run build` and output directory `dist`.
+
+See [the deployment guide](docs/DEPLOYMENT.md) for both setup paths, the Wrangler error, and domain connection.
+Domain registration can remain with its current registrar.
 
 ## Before accepting a change
 
-Run `npm run build` followed by `npm run check`. Review the affected pages on desktop and mobile, follow project links, open their media, test the résumé download, and verify the email action. Compare substantive content changes against the originals in `archive/`.
+Run `npm run build`; it also runs the migration checks. Review the affected pages on desktop and mobile, follow project links, open their media, test the résumé download, and verify the email action. Compare substantive content changes against the originals in `archive/`.
 
 ## Preservation record
 

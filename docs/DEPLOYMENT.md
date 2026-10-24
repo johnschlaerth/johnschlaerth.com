@@ -1,84 +1,96 @@
-# Deploy to Cloudflare Pages
+# Deploy on Cloudflare
 
-This repository builds a static website with Node.js. The deployment target is **Cloudflare Pages with GitHub integration**. Account authorization and the domain cutover happen in your Cloudflare account.
+The portfolio is a static site. `npm run build` creates and verifies `dist/`.
+Every image and video comes from this repository. Adobe is not required after deployment.
 
-## 1. Connect the repository
+## Fix the Wrangler configuration error
 
-1. Sign in to Cloudflare and open **Workers & Pages**.
-2. Select **Create application**, then the **Pages** tab. Choose **Connect to Git** or **Import an existing Git repository**. Use the Pages path, not the Worker creation wizard.
-3. Connect the GitHub account **`johnschlaerth`** and grant Cloudflare access to **`johnschlaerth.com`**. If the repository is absent, update the Cloudflare GitHub app's repository permissions.
-4. Select **`johnschlaerth/johnschlaerth.com`** and begin setup.
-5. Enter the following settings:
+The previous source had no Wrangler configuration. Cloudflare's **Clone a public repository via Git URL** flow expects one.
+The root `wrangler.json` now names the Worker and its static asset directory. It also configures real 404 responses.
+
+Use the latest `main` branch. If the wizard still shows the old error, return to repository selection and select the repository again.
+Use **Import a repository** for an existing GitHub repository. The **Clone a public repository** option creates a copy under the connected GitHub account.
+
+## Workers with GitHub integration
+
+Connect `johnschlaerth/johnschlaerth.com` from **Workers & Pages → Create application → Import a repository**.
+The Cloudflare GitHub connection must have access to that repository.
 
 | Setting | Value |
 | --- | --- |
-| Project name | `johnschlaerth` or another available name |
+| Worker name | `johnschlaerth-com` (must match `wrangler.json`) |
+| Production branch | `main` |
+| Root directory | Repository root |
+| Build command | `npm run build` |
+| Deploy command | `npx --yes wrangler@4.152.0 deploy` |
+| Node version | `22` or newer; set `NODE_VERSION=22` if needed |
+
+The build stops if a local image, video, link, or original description is missing.
+Wrangler uploads only `dist/`. Original snapshots and source video segments stay outside the deployed site.
+Test the `workers.dev` address before you connect the domain.
+
+For a terminal deployment, authenticate Wrangler in your Cloudflare account, then run:
+
+```sh
+npm ci
+npm run deploy
+```
+
+For a deployment check without publication:
+
+```sh
+npm run build
+npx --yes wrangler@4.152.0 deploy --dry-run
+```
+
+## Cloudflare Pages alternative
+
+An existing Pages project can still serve this site. Use its Pages build settings:
+
+| Setting | Value |
+| --- | --- |
 | Production branch | `main` |
 | Framework preset | `None` |
 | Build command | `npm run build` |
 | Build output directory | `dist` |
-| Root directory | Leave empty to use the repository root |
-| Environment variable, if needed | `NODE_VERSION` = `22` |
+| Root directory | Repository root |
+| Node version | `22` or newer |
 
-The build requires Node.js 22 or newer. No API keys or application secrets are required. Deploy **only `dist/`**; it contains the public site, while original source snapshots remain in `archive/`.
+Leave the Worker deploy command out of Pages settings. Pages uses its dashboard build settings; `wrangler.json` configures the Worker option.
 
-6. Select **Save and Deploy**. Wait for a successful build and open the exact `https://<project-name>.pages.dev` address Cloudflare provides.
+## Verify the deployment
 
-After connection, pushes to `main` automatically rebuild the production site. Other branches can generate preview deployments according to the project's branch settings.
+- Open the homepage and each project. Refresh a project URL directly.
+- Open images at full size and play the FB-V12 video with sound.
+- Download the résumé and test the email link.
+- Check a narrow screen and keyboard navigation.
+- Open an unknown URL and confirm a 404 response.
 
-## 2. Verify before changing DNS
+## Connect johnschlaerth.com
 
-On the `pages.dev` deployment:
+Domain registration can remain with its current registrar. A registration transfer is optional.
 
-- Open the homepage and every project from the project index. Refresh a project page directly to check its route.
-- Check descriptions, captions, image galleries, and any video embeds against the archived originals.
-- Open the résumé download and test the contact email link. The contact action composes an email; it does not submit through Adobe.
-- Check mobile navigation and image sizing on a narrow screen.
-- Open a nonexistent path and confirm that the site's not-found page appears.
+1. Add `johnschlaerth.com` to the intended Cloudflare account.
+2. Compare its DNS records with the current provider. Preserve email and service-verification records.
+3. Follow Cloudflare's DNSSEC instructions before you replace the nameservers.
+4. Set the nameservers at the registrar to those Cloudflare assigns. Wait until the zone is active.
+5. For a Worker, open **Settings → Domains & Routes → Add → Custom domain**. Add `johnschlaerth.com`.
+6. For Pages, use **Custom domains → Set up a domain** instead.
+7. Add `www.johnschlaerth.com` if needed. Wait for HTTPS certificates, then test both addresses.
 
-Keep a copy of this repository, including `archive/` and `public/media/`. The archive is for recovery and comparison; it is not part of the live website.
+Attach the hostname through the application settings before you rely on a DNS record alone.
+Keep the Adobe site until the replacement and preserved content pass verification.
 
-## 3. Connect johnschlaerth.com
+## Updates
 
-**You do not need to transfer domain registration to Cloudflare.** For the apex address `johnschlaerth.com`, Cloudflare Pages requires a Cloudflare DNS zone in the same account as the Pages project. You can change nameservers at your existing registrar and transfer registration separately if desired.
-
-1. In Cloudflare, add/onboard **`johnschlaerth.com`** as a domain.
-2. Compare the imported DNS records with those at your current DNS provider. Cloudflare's automatic scan may miss records. Preserve existing email **MX**, **SPF**, **DKIM**, and **DMARC** records and service-verification records, if any.
-3. If DNSSEC is enabled at the current registrar, follow Cloudflare's instructions to disable it before replacing nameservers; re-enable it through Cloudflare after the zone is active.
-4. At the registrar, replace the nameservers with the two assigned by Cloudflare. Wait until Cloudflare reports the zone as active.
-5. Open **Workers & Pages → your Pages project → Custom domains → Set up a domain**. Add **`johnschlaerth.com`** and follow the DNS prompts.
-6. Add **`www.johnschlaerth.com`** through the same Pages custom-domain flow so both addresses work. If you prefer one canonical hostname, configure Cloudflare's documented `www` → apex redirect after the custom domain is working; preserve paths and query strings.
-7. Wait for each custom domain and its HTTPS certificate to become active. Verify the homepage, a project URL, media, and the résumé on the custom domain.
-
-Associate the hostname with the Pages project **before** relying on a manually created CNAME. A DNS record alone does not attach a hostname to Pages. Retire the Adobe-hosted site only after content has been preserved and the replacement has been verified.
-
-## Routine updates and recovery
-
-```sh
-npm ci
-npm run build
-npm run check
-```
-
-Commit the intended source changes and push to `main`. Watch the build in the Pages dashboard and inspect the resulting deployment. If a release causes a problem, use Pages' deployment history to roll back to a previously successful production deployment, then correct the source in GitHub.
-
-## Common setup problems
-
-| Symptom | Check |
-| --- | --- |
-| Build fails or uses an older Node version | Set `NODE_VERSION=22` and rerun the deployment. Check that the production branch contains `package.json` and `scripts/build.mjs`. |
-| Homepage returns 404 | Confirm output is `dist` and the successful build produced `dist/index.html`. |
-| Missing routes show the homepage | Confirm the deployed output includes the top-level `404.html`; Pages otherwise assumes a single-page application. |
-| Custom hostname fails while `pages.dev` works | Check Pages **Custom domains**, DNS-zone activation, hostname records, and certificate status. |
-| An image or video fails | Check the file or embed URL. Any third-party video embed still depends on its original provider. |
-| An added file blocks deployment | Pages limits each asset to **25 MiB**. Keep oversized originals archived and use a deployable derivative or suitable separate media hosting. |
+Push source changes to the connected production branch. Cloudflare rebuilds and deploys them.
+Keep `archive/` and `public/media/` in the repository for recovery.
+Each deployed file must remain below Cloudflare's 25 MiB asset limit. The build uses smaller derivatives for oversized original GIFs.
 
 ## Official references
 
-- [Cloudflare Pages Git integration](https://developers.cloudflare.com/pages/get-started/git-integration/)
-- [Deploying static HTML](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/)
+- [Worker static assets and configuration](https://developers.cloudflare.com/workers/static-assets/binding/)
+- [Workers build configuration](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/)
+- [Worker custom domains](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/)
+- [Pages Git integration](https://developers.cloudflare.com/pages/get-started/git-integration/)
 - [Pages custom domains](https://developers.cloudflare.com/pages/configuration/custom-domains/)
-- [Onboarding a domain and preserving DNS records](https://developers.cloudflare.com/fundamentals/manage-domains/add-site/)
-- [Redirecting www to the apex domain](https://developers.cloudflare.com/pages/how-to/www-redirect/)
-- [Serving Pages and not-found behavior](https://developers.cloudflare.com/pages/configuration/serving-pages/)
-- [Pages limits](https://developers.cloudflare.com/pages/platform/limits/)

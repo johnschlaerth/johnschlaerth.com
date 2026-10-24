@@ -5,23 +5,157 @@
   "linkedin": "https://www.linkedin.com/in/john-schlaerth",
   "github": "https://github.com/johnschlaerth",
   "siteUrl": "https://johnschlaerth.com",
-  "intro": "A multidisciplinary engineer working across precision hardware, robotics, embedded electronics, and AI-enabled systems.",
+  "intro": "Precision hardware, robotics, and the systems that connect them.",
   "resume": "/documents/John_Schlaerth_Resume_05.27.26.pdf",
   "projects": {
-    "noaa-adls-v9-doppler-lidar-scanner": { "category": "Systems", "tags": ["Systems", "Robotics"], "summary": "A continuously rotating scanner for ultra-precise atmospheric LiDAR measurements.", "role": "Project lead / project manager", "context": "NOAA · University of Colorado Boulder" },
-    "electronic-bike-lock-engineering-design-project": { "category": "Product design", "tags": ["Product design", "Systems"], "summary": "An electronic combination lock, from CAD and microcontrollers to a working physical prototype.", "role": "Team lead", "context": "University of Colorado Boulder" },
-    "fb-v12-robot-design-project": { "category": "Robotics", "tags": ["Robotics", "Product design"], "summary": "A walking robot developed through generative design, modular mechanisms, and iterative testing.", "context": "Columbia University" },
-    "algorithmic-product-design-scalable-utility-box": { "category": "Product design", "tags": ["Product design"], "summary": "Parametric software that turns material dimensions into a manufacturable, laser-cut box.", "context": "Algorithmic product design" },
-    "hm-v2-robot-design-project": { "category": "Robotics", "tags": ["Robotics"], "summary": "A rapid walking-robot prototype, designed, printed, and assembled in three days.", "context": "Columbia University" },
-    "moving-highway-kinetic-sculpture-project": { "category": "Creative work", "tags": ["Creative work", "Systems"], "summary": "Mechanical design and fabrication for a moving kinetic sculpture.", "context": "University of Colorado Boulder" },
-    "algorithmic-product-design-tealight-project": { "category": "Product design", "tags": ["Product design", "Creative work"], "summary": "An exploration of customizable lattice structures generated with OpenSCAD.", "context": "Algorithmic product design" },
-    "simulated-soft-robotics-project": { "category": "Robotics", "tags": ["Robotics", "Systems"], "summary": "Evolutionary algorithms discover locomotion strategies inside a custom C++ physics simulator.", "context": "Columbia University" },
-    "airform-splint-biomedical-engineering-project": { "category": "Product design", "tags": ["Product design"], "summary": "Prototyping and pressure testing a device for molding medical splints.", "role": "Team lead", "context": "University of Colorado Boulder" },
-    "traveling-salesman-evolutionary-algorithm-project": { "category": "Systems", "tags": ["Systems"], "summary": "An evolutionary approach to the traveling salesman optimization problem.", "context": "Algorithms and optimization" },
-    "automated-cooker-kitchen-appliance": { "category": "Product design", "tags": ["Product design", "Systems"], "summary": "A physical kitchen-appliance concept combining powered stirring and variable heating.", "context": "University of Colorado · Idea Forge" },
-    "dreamwalkers-music-video-prop-design": { "category": "Creative work", "tags": ["Creative work", "Product design"], "summary": "Physical prop design for the Dreamwalkers music video.", "context": "Design and fabrication" },
-    "programmable-fractal-embroidery-project": { "category": "Creative work", "tags": ["Creative work", "Systems"], "summary": "Programmable fractal patterns translated into embroidery.", "context": "Code and physical craft" },
-    "automated-tattoo-robot-design": { "category": "Robotics", "tags": ["Robotics", "Product design"], "summary": "Design studies for an automated tattoo robot.", "context": "Robotic design" },
-    "furniture-topology-optimization-project": { "category": "Product design", "tags": ["Product design", "Creative work"], "summary": "Furniture design explored through topology optimization.", "context": "Generative design" }
+    "noaa-adls-v9-doppler-lidar-scanner": {
+      "category": "Systems",
+      "tags": [
+        "Systems",
+        "Robotics"
+      ],
+      "summary": "A continuously rotating scanner for ultra-precise atmospheric LiDAR measurements.",
+      "role": "Project lead / project manager",
+      "context": "NOAA · University of Colorado Boulder",
+      "cardTitle": "NOAA Doppler LiDAR scanner"
+    },
+    "electronic-bike-lock-engineering-design-project": {
+      "category": "Product design",
+      "tags": [
+        "Product design",
+        "Systems"
+      ],
+      "summary": "An electronic combination lock, from CAD and microcontrollers to a working physical prototype.",
+      "role": "Team lead",
+      "context": "University of Colorado Boulder",
+      "cardTitle": "Electronic bike lock"
+    },
+    "fb-v12-robot-design-project": {
+      "category": "Robotics",
+      "tags": [
+        "Robotics",
+        "Product design"
+      ],
+      "summary": "A walking robot developed through generative design, modular mechanisms, and iterative testing.",
+      "context": "Columbia University",
+      "cardTitle": "FB-V12 walking robot"
+    },
+    "algorithmic-product-design-scalable-utility-box": {
+      "category": "Product design",
+      "tags": [
+        "Product design"
+      ],
+      "summary": "Parametric software that turns material dimensions into a manufacturable, laser-cut box.",
+      "context": "Algorithmic product design",
+      "cardTitle": "Scalable utility box"
+    },
+    "hm-v2-robot-design-project": {
+      "category": "Robotics",
+      "tags": [
+        "Robotics"
+      ],
+      "summary": "A rapid walking-robot prototype, designed, printed, and assembled in three days.",
+      "context": "Columbia University",
+      "cardTitle": "HM-V2 walking robot"
+    },
+    "moving-highway-kinetic-sculpture-project": {
+      "category": "Creative work",
+      "tags": [
+        "Creative work",
+        "Systems"
+      ],
+      "summary": "Mechanical design and fabrication for a moving kinetic sculpture.",
+      "context": "University of Colorado Boulder",
+      "cardTitle": "Moving Highway"
+    },
+    "algorithmic-product-design-tealight-project": {
+      "category": "Product design",
+      "tags": [
+        "Product design",
+        "Creative work"
+      ],
+      "summary": "An exploration of customizable lattice structures generated with OpenSCAD.",
+      "context": "Algorithmic product design",
+      "cardTitle": "Parametric tealights"
+    },
+    "simulated-soft-robotics-project": {
+      "category": "Robotics",
+      "tags": [
+        "Robotics",
+        "Systems"
+      ],
+      "summary": "Evolutionary algorithms discover locomotion strategies inside a custom C++ physics simulator.",
+      "context": "Columbia University",
+      "cardTitle": "Simulated soft robotics"
+    },
+    "airform-splint-biomedical-engineering-project": {
+      "category": "Product design",
+      "tags": [
+        "Product design"
+      ],
+      "summary": "Prototyping and pressure testing a device for molding medical splints.",
+      "role": "Team lead",
+      "context": "University of Colorado Boulder",
+      "cardTitle": "AirForm splint"
+    },
+    "traveling-salesman-evolutionary-algorithm-project": {
+      "category": "Systems",
+      "tags": [
+        "Systems"
+      ],
+      "summary": "An evolutionary approach to the traveling salesman optimization problem.",
+      "context": "Algorithms and optimization",
+      "cardTitle": "Traveling salesman algorithm"
+    },
+    "automated-cooker-kitchen-appliance": {
+      "category": "Product design",
+      "tags": [
+        "Product design",
+        "Systems"
+      ],
+      "summary": "A physical kitchen-appliance concept combining powered stirring and variable heating.",
+      "context": "University of Colorado · Idea Forge",
+      "cardTitle": "Automated cooker"
+    },
+    "dreamwalkers-music-video-prop-design": {
+      "category": "Creative work",
+      "tags": [
+        "Creative work",
+        "Product design"
+      ],
+      "summary": "Physical prop design for the Dreamwalkers music video.",
+      "context": "Design and fabrication",
+      "cardTitle": "Dreamwalkers props"
+    },
+    "programmable-fractal-embroidery-project": {
+      "category": "Creative work",
+      "tags": [
+        "Creative work",
+        "Systems"
+      ],
+      "summary": "Programmable fractal patterns translated into embroidery.",
+      "context": "Code and physical craft",
+      "cardTitle": "Fractal embroidery"
+    },
+    "automated-tattoo-robot-design": {
+      "category": "Robotics",
+      "tags": [
+        "Robotics",
+        "Product design"
+      ],
+      "summary": "Design studies for an automated tattoo robot.",
+      "context": "Robotic design",
+      "cardTitle": "Automated tattoo robot"
+    },
+    "furniture-topology-optimization-project": {
+      "category": "Product design",
+      "tags": [
+        "Product design",
+        "Creative work"
+      ],
+      "summary": "Furniture design explored through topology optimization.",
+      "context": "Generative design",
+      "cardTitle": "Topology-optimized furniture"
+    }
   }
 }
