@@ -1,0 +1,22 @@
+[
+  {
+    "page": "fb-v12-robot-design-project",
+    "module": {
+      "type": "video",
+      "src": "/media/fb-v12-walking-robot.mp4",
+      "poster": "/media/fb-v12-video-poster.jpg",
+      "title": "FB-V12 Walking Robot",
+      "width": 1024,
+      "height": 576,
+      "duration": 408.491,
+      "bytes": 23371885,
+      "original_url": "https://www-ccv.adobe.io/v1/player/ccv/QDI_k9Rchi3/embed"
+    },
+    "sha256": "1389793d1724d39688ae82d91d0e28c7ec4efceb0d5005dbb80fb95ba7e9ab99",
+    "original_archive": "archive/adobe/video/fb-v12/index.m3u8",
+    "original_resolution": "1920x1080",
+    "original_segments": 69,
+    "original_bytes": 271330436,
+    "playback_encoding": "libx264 1024x576 veryfast 390k maxrate500k bufsize780k; AAC64k; faststart"
+  }
+]

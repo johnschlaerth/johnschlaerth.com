@@ -1,0 +1,67 @@
+{
+  "source_url": "https://johnschlaerth.myportfolio.com",
+  "captured_at": "2026-10-23T23:48:16.193585+00:00",
+  "pages": 21,
+  "projects": 15,
+  "assets": 362,
+  "downloaded_assets": 362,
+  "downloaded_bytes": 897739916,
+  "oversize_assets": [
+    "/media/2b3a1f24-c519-4d4c-8a1c-f9be05570f66_carw_202x158x5120-a9d22d7602.gif",
+    "/media/916d3791-059d-4955-a052-d1c9a88a3db7-9709967b88.gif",
+    "/media/fb3f5879-9d5d-4d17-81a5-d576bf696941-083a533abb.gif",
+    "/media/17da0582-08f0-4f0a-8af9-6797a1df1fd8-a675f0e0cb.gif"
+  ],
+  "failures": [],
+  "external_embeds": [],
+  "module_counts": {
+    "index": 0,
+    "work": 0,
+    "about": 8,
+    "resume": 1,
+    "social-media": 0,
+    "contact": 1,
+    "noaa-adls-v9-doppler-lidar-scanner": 16,
+    "electronic-bike-lock-engineering-design-project": 3,
+    "fb-v12-robot-design-project": 83,
+    "algorithmic-product-design-scalable-utility-box": 22,
+    "hm-v2-robot-design-project": 19,
+    "moving-highway-kinetic-sculpture-project": 13,
+    "algorithmic-product-design-tealight-project": 20,
+    "simulated-soft-robotics-project": 4,
+    "airform-splint-biomedical-engineering-project": 5,
+    "traveling-salesman-evolutionary-algorithm-project": 6,
+    "automated-cooker-kitchen-appliance": 3,
+    "dreamwalkers-music-video-prop-design": 9,
+    "programmable-fractal-embroidery-project": 14,
+    "automated-tattoo-robot-design": 6,
+    "furniture-topology-optimization-project": 18
+  },
+  "original_content_image_occurrences": 344,
+  "original_project_covers": 15,
+  "original_global_graphics": 2,
+  "video_posters": 1,
+  "original_stylesheets": 13,
+  "preserved_videos": [
+    {
+      "page": "fb-v12-robot-design-project",
+      "module": {
+        "type": "video",
+        "src": "/media/fb-v12-walking-robot.mp4",
+        "poster": "/media/fb-v12-video-poster.jpg",
+        "title": "FB-V12 Walking Robot",
+        "width": 1024,
+        "height": 576,
+        "duration": 408.491,
+        "bytes": 23371885,
+        "original_url": "https://www-ccv.adobe.io/v1/player/ccv/QDI_k9Rchi3/embed"
+      },
+      "sha256": "1389793d1724d39688ae82d91d0e28c7ec4efceb0d5005dbb80fb95ba7e9ab99",
+      "original_archive": "archive/adobe/video/fb-v12/index.m3u8",
+      "original_resolution": "1920x1080",
+      "original_segments": 69,
+      "original_bytes": 271330436,
+      "playback_encoding": "libx264 1024x576 veryfast 390k maxrate500k bufsize780k; AAC64k; faststart"
+    }
+  ]
+}

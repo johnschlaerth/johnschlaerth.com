@@ -1,0 +1,116 @@
+{
+  "pages": [
+    {
+      "slug": "index",
+      "route": "/",
+      "file": "index.html"
+    },
+    {
+      "slug": "work",
+      "route": "/work/",
+      "file": "work/index.html"
+    },
+    {
+      "slug": "noaa-adls-v9-doppler-lidar-scanner",
+      "route": "/noaa-adls-v9-doppler-lidar-scanner/",
+      "file": "noaa-adls-v9-doppler-lidar-scanner/index.html"
+    },
+    {
+      "slug": "electronic-bike-lock-engineering-design-project",
+      "route": "/electronic-bike-lock-engineering-design-project/",
+      "file": "electronic-bike-lock-engineering-design-project/index.html"
+    },
+    {
+      "slug": "fb-v12-robot-design-project",
+      "route": "/fb-v12-robot-design-project/",
+      "file": "fb-v12-robot-design-project/index.html"
+    },
+    {
+      "slug": "algorithmic-product-design-scalable-utility-box",
+      "route": "/algorithmic-product-design-scalable-utility-box/",
+      "file": "algorithmic-product-design-scalable-utility-box/index.html"
+    },
+    {
+      "slug": "hm-v2-robot-design-project",
+      "route": "/hm-v2-robot-design-project/",
+      "file": "hm-v2-robot-design-project/index.html"
+    },
+    {
+      "slug": "moving-highway-kinetic-sculpture-project",
+      "route": "/moving-highway-kinetic-sculpture-project/",
+      "file": "moving-highway-kinetic-sculpture-project/index.html"
+    },
+    {
+      "slug": "algorithmic-product-design-tealight-project",
+      "route": "/algorithmic-product-design-tealight-project/",
+      "file": "algorithmic-product-design-tealight-project/index.html"
+    },
+    {
+      "slug": "simulated-soft-robotics-project",
+      "route": "/simulated-soft-robotics-project/",
+      "file": "simulated-soft-robotics-project/index.html"
+    },
+    {
+      "slug": "airform-splint-biomedical-engineering-project",
+      "route": "/airform-splint-biomedical-engineering-project/",
+      "file": "airform-splint-biomedical-engineering-project/index.html"
+    },
+    {
+      "slug": "traveling-salesman-evolutionary-algorithm-project",
+      "route": "/traveling-salesman-evolutionary-algorithm-project/",
+      "file": "traveling-salesman-evolutionary-algorithm-project/index.html"
+    },
+    {
+      "slug": "automated-cooker-kitchen-appliance",
+      "route": "/automated-cooker-kitchen-appliance/",
+      "file": "automated-cooker-kitchen-appliance/index.html"
+    },
+    {
+      "slug": "dreamwalkers-music-video-prop-design",
+      "route": "/dreamwalkers-music-video-prop-design/",
+      "file": "dreamwalkers-music-video-prop-design/index.html"
+    },
+    {
+      "slug": "programmable-fractal-embroidery-project",
+      "route": "/programmable-fractal-embroidery-project/",
+      "file": "programmable-fractal-embroidery-project/index.html"
+    },
+    {
+      "slug": "automated-tattoo-robot-design",
+      "route": "/automated-tattoo-robot-design/",
+      "file": "automated-tattoo-robot-design/index.html"
+    },
+    {
+      "slug": "furniture-topology-optimization-project",
+      "route": "/furniture-topology-optimization-project/",
+      "file": "furniture-topology-optimization-project/index.html"
+    },
+    {
+      "slug": "about",
+      "route": "/about/",
+      "file": "about/index.html"
+    },
+    {
+      "slug": "resume",
+      "route": "/resume/",
+      "file": "resume/index.html"
+    },
+    {
+      "slug": "social-media",
+      "route": "/social-media/",
+      "file": "social-media/index.html"
+    },
+    {
+      "slug": "contact",
+      "route": "/contact/",
+      "file": "contact/index.html"
+    }
+  ],
+  "skippedOversizedOriginals": [
+    "/media/17da0582-08f0-4f0a-8af9-6797a1df1fd8-a675f0e0cb.gif",
+    "/media/2b3a1f24-c519-4d4c-8a1c-f9be05570f66_carw_202x158x5120-a9d22d7602.gif",
+    "/media/916d3791-059d-4955-a052-d1c9a88a3db7-9709967b88.gif",
+    "/media/fb3f5879-9d5d-4d17-81a5-d576bf696941-083a533abb.gif"
+  ],
+  "note": "Oversized originals remain in the repository; deployable derivatives are linked by content/media-variants.json."
+}

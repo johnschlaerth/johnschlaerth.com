@@ -31,7 +31,7 @@ Open the address printed by the development server. `npm run dev` serves `dist/`
 
 Keep original project wording and media intact when making presentation changes. Add new public assets to `public/`, update their content references, then build and check. Archive files stay outside the deployed output.
 
-The contact action opens an email draft in the visitor's mail application; it does not claim to submit an Adobe contact form. External links and any retained third-party video embeds still depend on their respective providers.
+The contact action opens an email draft in the visitor's mail application; it does not claim to submit an Adobe contact form. The original Adobe-hosted video is preserved locally with audio; its complete 1080p source is archived as well. The live portfolio has no Adobe-hosted content dependencies.
 
 ## Publish on Cloudflare
 
@@ -51,3 +51,9 @@ See [the deployment guide](docs/DEPLOYMENT.md) for account connection, domain se
 ## Before accepting a change
 
 Run `npm run build` followed by `npm run check`. Review the affected pages on desktop and mobile, follow project links, open their media, test the résumé download, and verify the email action. Compare substantive content changes against the originals in `archive/`.
+
+## Preservation record
+
+The migration preserves 21 original URLs, 15 projects, all 17 text blocks, 344 content-image placements, 362 original image files (including covers and site graphics), and the complete FB-V12 video. See [the content audit](docs/CONTENT_AUDIT.md) and [archive documentation](archive/adobe/README.md). Original oversized GIFs remain in Git; display versions meet Cloudflare’s 25 MiB per-file limit.
+
+The manually runnable **Preserve portfolio media** workflow verifies existing originals against the frozen hashes. During the initial migration it restored the media from the recorded public URLs and committed them here. Normal builds use the checked-in files and do not contact Adobe.

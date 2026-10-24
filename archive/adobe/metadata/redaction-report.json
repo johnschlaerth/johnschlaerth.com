@@ -1,0 +1,23 @@
+{
+  "reason": "Remove transient playback access parameters before public repository publication. Discover current public playback access in memory when restoring missing originals.",
+  "changed_files": [
+    "archive/adobe/README.md",
+    "archive/adobe/metadata/assets.json",
+    "archive/adobe/metadata/content-verification.json",
+    "archive/adobe/metadata/pages.json",
+    "archive/adobe/metadata/preserved-videos.json",
+    "archive/adobe/metadata/redaction-report.json",
+    "archive/adobe/metadata/report.json",
+    "archive/adobe/pages/fb-v12-robot-design-project.html",
+    "archive/adobe/video/fb-v12/source.json",
+    "content/site.json",
+    "scripts/restore-preserved-media.py"
+  ],
+  "removed_ephemeral_response_files": [
+    "archive/adobe/metadata/fb-v12-video-player.html",
+    "archive/adobe/metadata/fb-v12-video-player.json",
+    "archive/adobe/metadata/fb-v12-video-info.txt"
+  ],
+  "content_effect": "No portfolio descriptions, images, audio, or video content removed. The public player iframe access query is omitted from the archived HTML.",
+  "html_hash_policy": "sha256 verifies the sanitized archived file. original_capture_sha256 retains the checksum of the initial capture, without retaining its access parameters."
+}

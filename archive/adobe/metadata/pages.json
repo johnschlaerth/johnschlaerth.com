@@ -1,0 +1,172 @@
+[
+  {
+    "slug": "index",
+    "source_url": "https://johnschlaerth.myportfolio.com/",
+    "title": "Portfolio Projects",
+    "kind": "index",
+    "raw_html": "archive/adobe/pages/index.html",
+    "sha256": "6eec18b25e96cefdf23057104de393d801f2473982a5359b480464edf3fb284a"
+  },
+  {
+    "slug": "work",
+    "source_url": "https://johnschlaerth.myportfolio.com/work",
+    "title": "Portfolio Projects",
+    "kind": "index",
+    "raw_html": "archive/adobe/pages/work.html",
+    "sha256": "6eec18b25e96cefdf23057104de393d801f2473982a5359b480464edf3fb284a"
+  },
+  {
+    "slug": "about",
+    "source_url": "https://johnschlaerth.myportfolio.com/about",
+    "title": "About",
+    "kind": "page",
+    "raw_html": "archive/adobe/pages/about.html",
+    "sha256": "4f05d32ec3ebd51c0d3359f0c189492c8a5162a019fcbbe933d8fe3cdb02ffde"
+  },
+  {
+    "slug": "resume",
+    "source_url": "https://johnschlaerth.myportfolio.com/resume",
+    "title": "Resume",
+    "kind": "page",
+    "raw_html": "archive/adobe/pages/resume.html",
+    "sha256": "d85053ae1bbea43caf8576a6c593bdc29c61fc90e9003c0de5ef4f7684810174"
+  },
+  {
+    "slug": "social-media",
+    "source_url": "https://johnschlaerth.myportfolio.com/social-media",
+    "title": "Social Media",
+    "kind": "page",
+    "raw_html": "archive/adobe/pages/social-media.html",
+    "sha256": "c699e2d116af3120c5b3e152452c1ede347388a6bfb33406bd8fb46ec92fd008"
+  },
+  {
+    "slug": "contact",
+    "source_url": "https://johnschlaerth.myportfolio.com/contact",
+    "title": "Contact",
+    "kind": "page",
+    "raw_html": "archive/adobe/pages/contact.html",
+    "sha256": "426c4d49ddfbf0f4257b1ba660815cefe13f09c8a94cc8cd70a4658e756ddf86"
+  },
+  {
+    "slug": "noaa-adls-v9-doppler-lidar-scanner",
+    "source_url": "https://johnschlaerth.myportfolio.com/noaa-adls-v9-doppler-lidar-scanner",
+    "title": "NOAA ADLS-V9 Doppler LIDAR Scanner",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/noaa-adls-v9-doppler-lidar-scanner.html",
+    "sha256": "f30bacc0d707e4ddd28c1329dfb15e93304a41f4d94d5b01e6f2693be65977cf"
+  },
+  {
+    "slug": "electronic-bike-lock-engineering-design-project",
+    "source_url": "https://johnschlaerth.myportfolio.com/electronic-bike-lock-engineering-design-project",
+    "title": "Electronic Bike Lock Engineering Design Project",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/electronic-bike-lock-engineering-design-project.html",
+    "sha256": "bb767078076874f3a820a602686324c1e1a43ad2b167d701c7313d84ee5e1cf5"
+  },
+  {
+    "slug": "fb-v12-robot-design-project",
+    "source_url": "https://johnschlaerth.myportfolio.com/fb-v12-robot-design-project",
+    "title": "FB-V12 Walking Robot",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/fb-v12-robot-design-project.html",
+    "sha256": "20e73fbf430e89658d59d12350b170c80f5a775bd4a5ea42ebcbf0103708fca7",
+    "original_capture_sha256": "16fb3461f4f5bd1f29ef0175428368532627beabf0ffc0ffcfa1c68bd312f385",
+    "archive_redaction": "Transient playback access parameters removed; portfolio content and media preserved."
+  },
+  {
+    "slug": "algorithmic-product-design-scalable-utility-box",
+    "source_url": "https://johnschlaerth.myportfolio.com/algorithmic-product-design-scalable-utility-box",
+    "title": "Algorithmic Product Design - Scalable Utility Box",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/algorithmic-product-design-scalable-utility-box.html",
+    "sha256": "60309f91adc9daf86d21a7e770f6a815eebfc7509a821ea924577debece41f6d"
+  },
+  {
+    "slug": "hm-v2-robot-design-project",
+    "source_url": "https://johnschlaerth.myportfolio.com/hm-v2-robot-design-project",
+    "title": "HM-V2 Walking Robot",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/hm-v2-robot-design-project.html",
+    "sha256": "a4846c13891577ba1edfd50898059a79db15dec44d2eb721d2eeb9a660180068"
+  },
+  {
+    "slug": "moving-highway-kinetic-sculpture-project",
+    "source_url": "https://johnschlaerth.myportfolio.com/moving-highway-kinetic-sculpture-project",
+    "title": "Moving Highway Kinetic Sculpture Project",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/moving-highway-kinetic-sculpture-project.html",
+    "sha256": "2194875de057f3dcdc1bcfcde94cf1a1793935fbf7260e41c7585769f686b5be"
+  },
+  {
+    "slug": "algorithmic-product-design-tealight-project",
+    "source_url": "https://johnschlaerth.myportfolio.com/algorithmic-product-design-tealight-project",
+    "title": "Algorithmic Product Design - \"Tealight\" Project",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/algorithmic-product-design-tealight-project.html",
+    "sha256": "99d9ee9ff4d21e2f19f8bf7b05d77162dffb016353033ee5f24b86e31c64ab47"
+  },
+  {
+    "slug": "simulated-soft-robotics-project",
+    "source_url": "https://johnschlaerth.myportfolio.com/simulated-soft-robotics-project",
+    "title": "Simulated Soft Robotics Project",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/simulated-soft-robotics-project.html",
+    "sha256": "f854c37a2a8e666dfbd6dd3767187ebec5ec311dcd652163636e1b34fda31399"
+  },
+  {
+    "slug": "airform-splint-biomedical-engineering-project",
+    "source_url": "https://johnschlaerth.myportfolio.com/airform-splint-biomedical-engineering-project",
+    "title": "AirForm Splint Biomedical Engineering Project",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/airform-splint-biomedical-engineering-project.html",
+    "sha256": "7c03b35d2b5061dcf24b9f918cda0c0df24136a8aaa29f431f46b33c9a13af77"
+  },
+  {
+    "slug": "traveling-salesman-evolutionary-algorithm-project",
+    "source_url": "https://johnschlaerth.myportfolio.com/traveling-salesman-evolutionary-algorithm-project",
+    "title": "Traveling Salesman Evolutionary Algorithm Project",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/traveling-salesman-evolutionary-algorithm-project.html",
+    "sha256": "9ac0adf44d7477326987de3d6d558b923456be72112436cb734599c0e6b30d20"
+  },
+  {
+    "slug": "automated-cooker-kitchen-appliance",
+    "source_url": "https://johnschlaerth.myportfolio.com/automated-cooker-kitchen-appliance",
+    "title": "Automated Cooker Kitchen Appliance",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/automated-cooker-kitchen-appliance.html",
+    "sha256": "08ade16f9a93753acacdb11f93381da7cec14d08cf4eb2f24cf4846bf158d988"
+  },
+  {
+    "slug": "dreamwalkers-music-video-prop-design",
+    "source_url": "https://johnschlaerth.myportfolio.com/dreamwalkers-music-video-prop-design",
+    "title": "Dreamwalkers Music Video Prop Design",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/dreamwalkers-music-video-prop-design.html",
+    "sha256": "420bc4022eb7551745f5992c451cccb888a6b7e182e01b470ac1bd4fc685e290"
+  },
+  {
+    "slug": "programmable-fractal-embroidery-project",
+    "source_url": "https://johnschlaerth.myportfolio.com/programmable-fractal-embroidery-project",
+    "title": "Programmable Fractal Embroidery Project",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/programmable-fractal-embroidery-project.html",
+    "sha256": "a9343e3c87a74d3bc5d4699688aaa03c3b243dd64af77a3a2228629fb2fbf2f2"
+  },
+  {
+    "slug": "automated-tattoo-robot-design",
+    "source_url": "https://johnschlaerth.myportfolio.com/automated-tattoo-robot-design",
+    "title": "Automated Tattoo Robot Design",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/automated-tattoo-robot-design.html",
+    "sha256": "9424958db0f510f23fa46c76d785d343aa05f9573e75387f3bf5c6512062227d"
+  },
+  {
+    "slug": "furniture-topology-optimization-project",
+    "source_url": "https://johnschlaerth.myportfolio.com/furniture-topology-optimization-project",
+    "title": "Furniture Topology Optimization Project",
+    "kind": "project",
+    "raw_html": "archive/adobe/pages/furniture-topology-optimization-project.html",
+    "sha256": "473eefe34bfe8510aa49797877b61beaa9978c680e8415b0e0ac6461ef05e701"
+  }
+]
