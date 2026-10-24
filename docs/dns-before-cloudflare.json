@@ -1,0 +1,11 @@
+{
+  "domain": "johnschlaerth.com",
+  "recorded_date": "2026-10-23",
+  "source": "Cloudflare DNS dashboard",
+  "records": [
+    {"type":"A","name":"johnschlaerth.com","content":"151.101.192.119","proxied":true,"ttl":"auto"},
+    {"type":"A","name":"johnschlaerth.com","content":"151.101.0.119","proxied":true,"ttl":"auto"},
+    {"type":"A","name":"www.johnschlaerth.com","content":"151.101.0.119","proxied":true,"ttl":"auto"},
+    {"type":"A","name":"www.johnschlaerth.com","content":"151.101.192.119","proxied":true,"ttl":"auto"}
+  ]
+}
