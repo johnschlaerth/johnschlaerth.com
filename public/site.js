@@ -1,36 +1,4 @@
 /* The portfolio is fully readable without JavaScript. These are optional enhancements. */
-const cards = [...document.querySelectorAll('.project-card')];
-const filters = [...document.querySelectorAll('[data-filter]')];
-const search = document.querySelector('#project-search');
-const count = document.querySelector('#project-count');
-const empty = document.querySelector('#no-projects');
-let selected = 'all';
-function filterProjects() {
-  const query = (search?.value || '').trim().toLocaleLowerCase();
-  let visible = 0;
-  cards.forEach(card => {
-    const match = (selected === 'all' || card.dataset.category.split('|').includes(selected)) && card.dataset.search.includes(query);
-    card.hidden = !match;
-    if (match) visible++;
-  });
-  if (count) count.textContent = `${visible} ${visible === 1 ? 'project' : 'projects'}`;
-  if (empty) empty.hidden = visible !== 0;
-}
-if (cards.length) {
-  document.querySelector('.project-toolbar')?.removeAttribute('hidden');
-  filters.forEach(button => button.addEventListener('click', () => {
-    selected = button.dataset.filter;
-    filters.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
-    filterProjects();
-  }));
-  search?.addEventListener('input', filterProjects);
-  document.querySelector('#reset-projects')?.addEventListener('click', () => {
-    if (search) search.value = '';
-    filters.find(button => button.dataset.filter === 'all')?.click();
-    search?.focus();
-  });
-}
-
 const galleryLinks = [...document.querySelectorAll('[data-lightbox]')];
 const dialog = document.querySelector('#image-lightbox');
 if (dialog && typeof dialog.showModal === 'function' && galleryLinks.length) {
