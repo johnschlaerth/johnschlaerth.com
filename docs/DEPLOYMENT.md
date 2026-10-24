@@ -18,7 +18,7 @@ The Cloudflare GitHub connection must have access to that repository.
 
 | Setting | Value |
 | --- | --- |
-| Worker name | `johnschlaerth-com` (must match `wrangler.json`) |
+| Worker name | `johnschlaerth-portfolio` (must match `wrangler.json`) |
 | Production branch | `main` |
 | Root directory | Repository root |
 | Build command | `npm run build` |

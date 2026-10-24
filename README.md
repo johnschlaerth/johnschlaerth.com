@@ -35,11 +35,13 @@ The contact action opens an email draft in the visitor's mail application; it do
 
 ## Publish on Cloudflare
 
+The current Worker is `johnschlaerth-portfolio`. Cloudflare uses [the deployment repository](https://github.com/goosnav/johnschlaerth-portfolio). This repository holds the complete source and original media archive.
+
 The root `wrangler.json` configures a static Cloudflare Worker. Connect **`johnschlaerth/johnschlaerth.com`** with these settings:
 
 | Setting | Value |
 | --- | --- |
-| Worker name | `johnschlaerth-com` |
+| Worker name | `johnschlaerth-portfolio` |
 | Production branch | `main` |
 | Build command | `npm run build` |
 | Deploy command | `npx --yes wrangler@4.152.0 deploy` |
