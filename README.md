@@ -24,7 +24,8 @@ Open the address printed by the development server. `npm run dev` serves `dist/`
 | `content/site.json` | Captured pages, descriptions, media references, and source information. |
 | `content/presentation.json` | Presentation annotations and organization for the replacement site. |
 | `public/media/` | Preserved media and any optimized display versions. |
-| `public/documents/John_Schlaerth_Resume_05.27.26.pdf` | Downloadable résumé supplied for this migration. |
+| `content/resume.html` | Responsive résumé content, transcribed from the current PDF. Update both together. |
+| `public/documents/John_Schlaerth_Resume_10.23.2026.pdf` | Current résumé PDF supplied by John. |
 | `scripts/build.mjs` | Static page generation. |
 | `archive/` | Original HTML and migration records, retained for checking and recovery. |
 | `dist/` | Generated public website; rebuild this from source. |
@@ -60,6 +61,6 @@ Run `npm run build`; it also runs the migration checks. Review the affected page
 
 ## Preservation record
 
-The migration preserves 21 original URLs, 15 projects, all 17 text blocks, 344 content-image placements, 362 original image files (including covers and site graphics), and the complete FB-V12 video. See [the content audit](docs/CONTENT_AUDIT.md) and [archive documentation](archive/adobe/README.md). Original oversized GIFs remain in Git; display versions meet Cloudflare’s 25 MiB per-file limit.
+The migration preserves 21 original URLs, 15 projects, all 17 text blocks, 344 content-image placements, 362 original image files (including covers and site graphics), and the complete FB-V12 video. See [the content audit](docs/CONTENT_AUDIT.md) and [archive documentation](archive/adobe/README.md). The live résumé now uses the October 23, 2026 document in place of the archived résumé image. Original oversized GIFs remain in Git; display versions meet Cloudflare’s 25 MiB per-file limit.
 
 The manually runnable **Preserve portfolio media** workflow verifies existing originals against the frozen hashes. During the initial migration it restored the media from the recorded public URLs and committed them here. Normal builds use the checked-in files and do not contact Adobe.

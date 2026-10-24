@@ -53,11 +53,10 @@ if (contact) {
     const data = new FormData(contact);
     const name = String(data.get('name') || '').trim();
     const email = String(data.get('email') || '').trim();
-    const subject = String(data.get('subject') || 'Portfolio inquiry').trim();
     const message = String(data.get('message') || '').trim();
     const body = `${message}\n\nFrom: ${name}\nReply to: ${email}`;
-    const href = `mailto:${contact.dataset.recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    document.querySelector('#contact-status').textContent = 'Opening your email app. Review your message there and send it. If no app opens, use the email address above.';
+    const href = `mailto:${contact.dataset.recipient}?subject=${encodeURIComponent('Portfolio inquiry')}&body=${encodeURIComponent(body)}`;
+    document.querySelector('#contact-status').textContent = 'Review and send the draft in your email app. If it doesn’t open, use the email link.';
     window.location.href = href;
   });
 }

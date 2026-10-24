@@ -2,6 +2,7 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import { runInNewContext } from 'node:vm';
 
 const root = path.resolve(import.meta.dirname, '..');
 const dist = path.join(root, 'dist');
@@ -25,13 +26,15 @@ for (const page of site.pages) {
   report.routes++;
   if ((html.match(/<h1(?:\s|>)/g) || []).length !== 1) errors.push(`Expected one h1: ${page.slug}`);
   const renderedText = plain(html);
-  for (const module of page.modules || []) {
+  // The supplied October résumé replaces the archived Adobe résumé.
+  const modules = page.slug === 'resume' ? [] : page.modules || [];
+  for (const module of modules) {
     if (module.type === 'text') {
       report.textBlocks++;
       if (!renderedText.includes(normalize(module.text))) errors.push(`Missing source text on ${page.slug}: ${normalize(module.text).slice(0, 90)}`);
     }
   }
-  const expected = (page.modules || []).flatMap(module => module.images || []).map(image => image.src);
+  const expected = modules.flatMap(module => module.images || []).map(image => image.src);
   const actual = [...html.matchAll(/data-source-media="([^"]+)"/g)].map(match => decode(match[1]));
   report.contentImages += expected.length;
   if (JSON.stringify(expected) !== JSON.stringify(actual)) errors.push(`Image count or order changed on ${page.slug}: source=${expected.length}, output=${actual.length}`);
@@ -111,6 +114,28 @@ assert(existsSync(path.join(dist, '404.html')), 'A top-level 404.html is require
 assert(report.outputFiles < 20000, 'The site exceeds the Cloudflare Workers Free asset count.');
 const pdf = await readFile(path.join(dist, profile.resume));
 if (!pdf.subarray(0, 5).equals(Buffer.from('%PDF-'))) errors.push('Résumé download is not a valid PDF.');
+// Exercise the email composer without opening a mail app or sending a message.
+const contactHandlers = {};
+const contactFields = { name: 'Visitor & colleague', email: 'visitor@example.com', message: 'Hello John — robotics & design?\nA second line.' };
+let contactValid = false;
+const contactStatus = { textContent: '' };
+const contactForm = { dataset: { recipient: profile.email }, removeAttribute() {}, addEventListener(event, handler) { contactHandlers[event] = handler; }, reportValidity: () => contactValid };
+const contactWindow = { matchMedia: () => ({ matches: true }), location: { href: '' } };
+runInNewContext(await readFile(path.join(root, 'public/site.js'), 'utf8'), {
+  document: { querySelectorAll: () => [], querySelector: selector => selector === '#contact-form' ? contactForm : selector === '#contact-status' ? contactStatus : null },
+  window: contactWindow,
+  FormData: class { get(name) { return contactFields[name]; } }
+});
+contactHandlers.submit({ preventDefault() {} });
+assert.equal(contactWindow.location.href, '', 'An invalid contact form must not open an email draft.');
+contactValid = true;
+contactHandlers.submit({ preventDefault() {} });
+const draft = new URL(contactWindow.location.href);
+assert.equal(draft.protocol, 'mailto:');
+assert.equal(draft.pathname, profile.email);
+assert.equal(draft.searchParams.get('subject'), 'Portfolio inquiry');
+assert.equal(draft.searchParams.get('body'), `${contactFields.message}\n\nFrom: ${contactFields.name}\nReply to: ${contactFields.email}`, 'The draft must preserve punctuation, Unicode, line breaks, and reply details.');
+
 console.log(JSON.stringify(report, null, 2));
 if (errors.length) {
   console.error(`\n${errors.length} migration verification failure(s):\n${errors.map(error => `- ${error}`).join('\n')}`);

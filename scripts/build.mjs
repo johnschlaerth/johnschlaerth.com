@@ -18,6 +18,7 @@ const route = slug => !slug || slug === 'index' ? '/' : `/${slug.replace(/^\/+|\
 // Bypass image errors cached by the incomplete first deployment.
 const mediaURL = href => href.replace(/^\/media\/([^?#]+)$/, '/media/$1?v=20261023');
 const resume = profile.resume;
+const resumeHTML = await readFile(path.join(root, 'content/resume.html'), 'utf8');
 const absolute = href => new URL(href, profile.siteUrl).href;
 const navigation = [['work', 'Work'], ['about', 'About'], ['resume', 'Résumé'], ['contact', 'Contact']];
 const skippedAssets = [];
@@ -152,16 +153,15 @@ function generalPage(page) {
     body = `<div class="about-content project-modules">${modulesHTML(page)}</div><div class="hero-actions"><a class="button button-primary" href="/work/">Explore the portfolio →</a><a class="button button-secondary" href="${resume}">Download résumé ↗</a></div>`;
   } else if (page.slug === 'resume') {
     heading = 'Résumé';
-    body = `<div class="resume-actions"><a class="button button-primary" href="${resume}" download>Download résumé (PDF) ↓</a><a class="button button-secondary" href="${resume}" target="_blank" rel="noopener">Open PDF ↗</a></div><p class="caption">PDF version: May 27, 2026.</p><div class="resume-viewer"><iframe src="${resume}#view=FitH" title="John Schlaerth résumé — May 27, 2026" loading="lazy"></iframe></div><section class="original-resume"><div class="section-heading"><h2>Portfolio résumé</h2><span>Full-size image</span></div><div class="project-modules">${modulesHTML(page)}</div></section>`;
+    body = `<div class="resume-content">${resumeHTML}</div>`;
   } else if (page.slug === 'social-media') {
     heading = 'Elsewhere';
     body = `<div class="link-directory"><a class="directory-item" href="${profile.linkedin}"><div><h2>LinkedIn</h2><p>Professional background and connections</p></div><span aria-hidden="true">↗</span></a><a class="directory-item" href="${profile.github}"><div><h2>GitHub</h2><p>Code and technical projects</p></div><span aria-hidden="true">↗</span></a><a class="directory-item" href="mailto:${profile.email}"><div><h2>Email</h2><p>${profile.email}</p></div><span aria-hidden="true">↗</span></a></div>${modulesHTML(page)}`;
   } else if (page.slug === 'contact') {
     heading = 'Contact';
-    intro = 'For engineering opportunities, collaborations, or a question about my work.';
-    body = `<div class="contact-panel"><div><p class="eyebrow">Direct contact</p><h2><a href="mailto:${profile.email}">${profile.email}</a></h2><p>Or connect on <a href="${profile.linkedin}">LinkedIn ↗</a>.</p></div><form id="contact-form" data-recipient="${profile.email}" hidden><h2>Compose an email</h2><p class="form-note">This opens a draft in your email app. You review and send it there.</p><label for="contact-name">Name <span aria-hidden="true">*</span></label><input id="contact-name" name="name" type="text" required autocomplete="name" maxlength="120" placeholder="Your Name..."><label for="contact-email">Email Address <span aria-hidden="true">*</span></label><input id="contact-email" name="email" type="email" required autocomplete="email" maxlength="254" placeholder="Your Email Address..."><label for="contact-subject">Subject</label><input id="contact-subject" name="subject" type="text" maxlength="180" value="Portfolio inquiry"><label for="contact-message">Message <span aria-hidden="true">*</span></label><textarea id="contact-message" name="message" required rows="6" maxlength="4000" placeholder="Your Message..."></textarea><button class="button button-primary" type="submit">Open email draft ↗</button><p id="contact-status" role="status"></p></form></div>`;
+    body = `<div class="contact-layout"><div class="contact-details"><a href="mailto:${profile.email}">${profile.email}</a><a href="${profile.linkedin}">LinkedIn ↗</a></div><form id="contact-form" data-recipient="${profile.email}" hidden><div class="contact-fields"><div><label for="contact-name">Name</label><input id="contact-name" name="name" type="text" required autocomplete="name" maxlength="120" pattern=".*\\S.*"></div><div><label for="contact-email">Email</label><input id="contact-email" name="email" type="email" required autocomplete="email" maxlength="254"></div></div><label for="contact-message">Message</label><textarea id="contact-message" name="message" required rows="7" maxlength="4000" aria-describedby="contact-note"></textarea><div class="contact-submit"><button class="button button-primary" type="submit">Continue in email ↗</button><p id="contact-note">Opens a draft in your email app.</p></div><p id="contact-status" role="status"></p></form></div>`;
   } else body = modulesHTML(page);
-  return layout({ title: page.title, slug: page.slug, description: intro || page.description, body: `<header class="page-header"><h1 class="page-title">${escape(heading)}</h1>${intro ? `<p class="page-intro">${escape(intro)}</p>` : ''}</header>${body}` });
+  return layout({ title: page.title, slug: page.slug, description: intro || page.description, body: `<header class="page-header${page.slug === 'resume' ? ' resume-heading' : ''}"><h1 class="page-title">${escape(heading)}</h1>${intro ? `<p class="page-intro">${escape(intro)}</p>` : ''}${page.slug === 'resume' ? `<a class="resume-pdf" href="${resume}" target="_blank" rel="noopener">PDF ↗</a>` : ''}</header>${body}` });
 }
 
 async function savePage(slug, html) {

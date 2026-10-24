@@ -27,7 +27,7 @@ The 344 body images and 15 project-cover image records account for the initial 3
 
 **Contact.** The original name, email, and message fields, their placeholders, and form HTML are archived. The replacement deliberately uses an explicit email-composition action. Adobe's submission service and its success message must not be presented as a working local submission handler.
 
-**Resume.** The original résumé image is retained. The separately supplied `John_Schlaerth_Resume_05.27.26.pdf` is an additional download, not a replacement for the archived source image.
+**Resume.** At John’s request, the live page now uses `John_Schlaerth_Resume_10.23.2026.pdf`, transcribed into responsive HTML with one PDF link. It replaces the old résumé image on the live page. The original image and prior PDF remain in the repository for recovery; they are excluded from the live-page preservation comparison.
 
 **Walking-robot video.** The original FB-V12 page has one Adobe-hosted video iframe. Its original URL is captured. Video preservation and the deployable local playback copy are tracked separately under `archive/adobe/video/` and the corresponding migration metadata; this source-content audit does not substitute for playback verification.
 
