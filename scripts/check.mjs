@@ -7,6 +7,9 @@ const root = path.resolve(import.meta.dirname, '..');
 const dist = path.join(root, 'dist');
 const site = JSON.parse(await readFile(path.join(root, 'content/site.json'), 'utf8'));
 const profile = JSON.parse(await readFile(path.join(root, 'content/presentation.json'), 'utf8'));
+const cloudflare = JSON.parse(await readFile(path.join(root, 'wrangler.json'), 'utf8'));
+assert.equal(cloudflare.assets.directory, './dist', 'Cloudflare must deploy only the generated public site.');
+assert.equal(cloudflare.assets.not_found_handling, '404-page', 'Missing routes must return the portfolio 404 page.');
 const errors = [];
 const report = { routes: 0, textBlocks: 0, contentImages: 0, localReferences: 0, outputFiles: 0, largestAssetBytes: 0, adobeDependencies: 0 };
 const decode = value => value.replace(/&#x([\da-f]+);/gi, (_, code) => String.fromCodePoint(parseInt(code, 16))).replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code))).replace(/&(amp|lt|gt|quot|apos|nbsp|ndash|mdash|lsquo|rsquo|ldquo|rdquo|hellip);/g, (_, name) => ({ amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', ndash: '–', mdash: '—', lsquo: '‘', rsquo: '’', ldquo: '“', rdquo: '”', hellip: '…' }[name]));
@@ -104,6 +107,7 @@ for (const file of await filesIn(dist)) {
   }
 }
 assert(existsSync(path.join(dist, '404.html')), 'A top-level 404.html is required for real 404 handling on Cloudflare Pages.');
+assert(report.outputFiles < 20000, 'The site exceeds the Cloudflare Workers Free asset count.');
 const pdf = await readFile(path.join(dist, profile.resume));
 if (!pdf.subarray(0, 5).equals(Buffer.from('%PDF-'))) errors.push('Résumé download is not a valid PDF.');
 console.log(JSON.stringify(report, null, 2));

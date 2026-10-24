@@ -9,10 +9,10 @@
       "width": 1024,
       "height": 576,
       "duration": 408.491,
-      "bytes": 23371885,
+      "bytes": 23372835,
       "original_url": "https://www-ccv.adobe.io/v1/player/ccv/QDI_k9Rchi3/embed"
     },
-    "sha256": "1389793d1724d39688ae82d91d0e28c7ec4efceb0d5005dbb80fb95ba7e9ab99",
+    "sha256": "cbcb2a6fe86b5bbbc4f0cb44a0560e3f6834e5471d317851775af405aa061320",
     "original_archive": "archive/adobe/video/fb-v12/index.m3u8",
     "original_resolution": "1920x1080",
     "original_segments": 69,

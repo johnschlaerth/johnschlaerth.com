@@ -6,9 +6,10 @@
   "description": "John Schlaerth's independent engineering and design portfolio",
   "engines": { "node": ">=22" },
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "node scripts/build.mjs && node scripts/check.mjs",
     "check": "node scripts/check.mjs",
     "dev": "node scripts/serve.mjs",
-    "preview": "node scripts/serve.mjs"
+    "preview": "node scripts/serve.mjs",
+    "deploy": "npm run build && npx --yes wrangler@4.152.0 deploy"
   }
 }
